@@ -22,11 +22,50 @@ namespace CustomerMaintenance
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void FillCustomerListBox()
         {
-
+            lstCustomers.Items.Clear();
+            foreach (Customer c in customers)
+            {
+                lstCustomer.Items.Add(c.GetDisplayText());
+            }
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmNewCustomer newCustomerForm = new frmNewCustomer();
+            Customer customer = newCustomerForm.GetNewCustomer();
+            if (Customer != null)
+            {
+                customers.Add(customer);
+                CustomerDB.SaveCustomer(customers);
+                FillCustomerListBox();
+            }
+        }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int i = lstCustomer.SelectedIndex;
+            if (i != -1)
+            {
+                Customer customer = customers[i];
+                string message = "Are you sure you want to delete "
+                    + customer.Description + "?";
+                DialogResult button =
+                    MessageBox.Show(message, "Confirm Delete",
+                    MessageBoxButtons.YesNo);
+                if (button == DialogResult.Yes)
+                {
+                    customer.Remove(customer);
+                    customerDB.SaveCustomer(customers);
+                    FillCustomerListBox();
+                }
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace CustomerMaintenance
             this.txtLastName.Size = new System.Drawing.Size(176, 20);
             this.txtLastName.TabIndex = 14;
             this.txtLastName.Tag = "Last Name";
+            //this.txtLastName.TextChanged += new System.EventHandler(this.txtLastName_TextChanged);
             // 
             // txtFirstName
             // 

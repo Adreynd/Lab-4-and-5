@@ -22,11 +22,28 @@ namespace CustomerMaintenance
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        public Customer GetNewCustomer()
         {
-
+            this.ShowDialog();
+            return customer;
         }
 
-    
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (IsValidData())
+            {
+                /*Customer = new Customer(txtCode.Text,
+                    txtDescription.Text, Convert.ToDecimal(txtPrice.Text));
+                this.Close();*/
+            }
+        }
+
+        private bool IsValidData()
+        {
+            return Validator.IsPresent(txtFirstName) &&
+                   Validator.IsPresent(txtLastName) &&
+                   Validator.IsPresent(txtEmail) &&
+                   Validator.IsValidEmail(txtEmail);
+        }
     }
 }
