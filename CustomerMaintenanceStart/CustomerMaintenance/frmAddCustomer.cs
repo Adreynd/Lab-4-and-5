@@ -22,6 +22,8 @@ namespace CustomerMaintenance
             InitializeComponent();
         }
 
+        private Customer customer = null;
+
         public Customer GetNewCustomer()
         {
             this.ShowDialog();
@@ -32,9 +34,9 @@ namespace CustomerMaintenance
         {
             if (IsValidData())
             {
-                /*Customer = new Customer(txtCode.Text,
-                    txtDescription.Text, Convert.ToDecimal(txtPrice.Text));
-                this.Close();*/
+                customer = new Customer(txtFirstName.Text,
+                    txtLastName.Text, txtEmail.Text);
+                this.Close();
             }
         }
 

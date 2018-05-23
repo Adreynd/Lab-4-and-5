@@ -22,42 +22,50 @@ namespace CustomerMaintenance
             InitializeComponent();
         }
 
+        private List<Customer> customers = null;
+
+        private void frmCustomers_Load(object sender, EventArgs e)
+        {
+            customers = CustomerDB.GetCustomers();
+            FillCustomerListBox();
+        }
+
         private void FillCustomerListBox()
         {
             lstCustomers.Items.Clear();
             foreach (Customer c in customers)
             {
-                lstCustomer.Items.Add(c.GetDisplayText());
+                lstCustomers.Items.Add(c.GetDisplayText());
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmNewCustomer newCustomerForm = new frmNewCustomer();
+            frmAddCustomer newCustomerForm = new frmAddCustomer();
             Customer customer = newCustomerForm.GetNewCustomer();
-            if (Customer != null)
+            if (customer != null)
             {
                 customers.Add(customer);
-                CustomerDB.SaveCustomer(customers);
+                CustomerDB.SaveCustomers(customers);
                 FillCustomerListBox();
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int i = lstCustomer.SelectedIndex;
+            int i = lstCustomers.SelectedIndex;
             if (i != -1)
             {
                 Customer customer = customers[i];
                 string message = "Are you sure you want to delete "
-                    + customer.Description + "?";
+                    + customer.FirstName + " " + customer.LastName + "?";
                 DialogResult button =
                     MessageBox.Show(message, "Confirm Delete",
                     MessageBoxButtons.YesNo);
                 if (button == DialogResult.Yes)
                 {
-                    customer.Remove(customer);
-                    customerDB.SaveCustomer(customers);
+                    customers.Remove(customer);
+                    CustomerDB.SaveCustomers(customers);
                     FillCustomerListBox();
                 }
             }
