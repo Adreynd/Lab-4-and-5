@@ -24,13 +24,13 @@ namespace CustomerMaintenance
 
         private Customer customer = null;
 
-        public Customer GetNewCustomer()
+        public Customer GetNewCustomer()    // Returns the customer if it has been saved
         {
             this.ShowDialog();
             return customer;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)      // Saves the customer if the data in the fields is valid
         {
             if (IsValidData())
             {
