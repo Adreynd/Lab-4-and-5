@@ -53,7 +53,6 @@ namespace CustomerMaintenance
             this.txtLastName.Size = new System.Drawing.Size(176, 20);
             this.txtLastName.TabIndex = 14;
             this.txtLastName.Tag = "Last Name";
-            //this.txtLastName.TextChanged += new System.EventHandler(this.txtLastName_TextChanged);
             // 
             // txtFirstName
             // 
@@ -98,6 +97,7 @@ namespace CustomerMaintenance
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 

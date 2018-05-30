@@ -47,5 +47,10 @@ namespace CustomerMaintenance
                    Validator.IsPresent(txtEmail) &&
                    Validator.IsValidEmail(txtEmail);
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
